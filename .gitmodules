@@ -1,0 +1,3 @@
+[submodule "overlays/vitis-examples"]
+	path = overlays/vitis-examples
+	url = https://github.com/Xilinx/Vitis_Accel_Examples.git
