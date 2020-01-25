@@ -22,7 +22,7 @@ __email__ = "pynq_support@xilinx.com"
 
 
 # global variables
-module_name = "pynqexamples"
+module_name = "pynq_alveo_examples"
 _data_files = []
 
 
@@ -39,16 +39,17 @@ def _extend_package(path):
 _extend_package(os.path.join(module_name, "notebooks"))
 
 setup(name=module_name,
-      version="1.0.alpha2",
+      version="1.0.alpha3",
       description="Alveo-PYNQ",
       author="Giuseppe Natale",
       author_email="pynq_support@xilinx.com",
       url="https://github.com/giunatale/Alveo-PYNQ",
       packages=find_packages(),
-      download_url="https://test.pypi.org/project/pynqexamples/",
+      download_url="https://test.pypi.org/project/pynq-alveo-examples/",
       package_data={
           "": _data_files,
       },
+      python_requires='>=3.5.2',
       install_requires=[
           "pynq>=2.5.1a1",
           "jupyter",
@@ -64,9 +65,13 @@ setup(name=module_name,
           ]
       },
       entry_points={
-          "console_scripts": [
-              "pynq-examples = pynqexamples.cli:main"
+          "pynq.notebooks": [
+              "1-introduction = pynqexamples.notebooks.1_introduction",
+              "2-kernel-optimization = pynqexamples.notebooks."
+              "2_kernel_optimization",
+              "3-advanced-features = pynqexamples.notebooks."
+              "3_advanced_features"
           ]
       },
-      license='Apache License 2.0'
+      license="Apache License 2.0"
       )

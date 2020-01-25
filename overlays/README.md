@@ -76,16 +76,23 @@ To install built xclbins in a specific path (different from the default one):
 It is expected that the target path contains the appropriate notebooks folders.
 Otherwise, the installation will fail.
 
-## Deploying Examples from Cloned Repo
+## Install Examples using Cloned Repo
 
 As explained in the repository's main [README](../README.md), once you have 
-synthesized and installed the overlays in the appropriate notebooks folder, you 
-can deploy the examples to a target path directly from the cloned repository. 
+synthesized and copied the overlays in the appropriate notebooks folder, you 
+can can install the python package from the cloned repo to enable the
+`pynq get-notebooks` command to see the included examples.
 This is currently the only way to deploy the examples when using manually 
 synthesized overlays.
 
-After having synthesized and installed the overlays, as explained above, move
-to the root of this repository and run
+After having synthesized and copied the overlays, as explained above, move
+to the root of this repository and run:
 
 ```bash
-python3 -m pynqexamples -p <target-path>
+pip3 install -U .
+```
+
+Remember that when using conda, `pip3` might not be available, while `pip` will
+refer to Python3. In this case, use `pip` instead of `pip3`.
+
+After that, run the `pynq get-notebooks` command to get the examples.

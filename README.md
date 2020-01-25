@@ -12,22 +12,22 @@ cards/shells. Supported cards and related shells are listed in the overlays
 
 ## Quick Start
 
-Simply install the `pynqexamples` package using `pip`:
+Simply install the `pynq-alveo-examples` package using `pip`:
    ```bash
-   pip3 install pynqexamples
+   pip3 install pynq-alveo-examples
    ```
 
 Or if you are using `conda` (`pip3` might not be available, `pip` will refer to 
 Python3)
    ```bash
-   pip install pynqexamples
+   pip install pynq-alveo-examples
    ```
 
 After the package is installed, to get your own copy of all the notebooks 
 available run:
    ```bash
-   pynq examples
-   cd pynq-examples
+   pynq get-notebooks
+   cd pynq-notebooks
    ```
 
 You can try things out by running:
@@ -35,20 +35,25 @@ You can try things out by running:
    jupyter notebook
    ```
 
-There are a number of additional options for the `pynq examples` command, you 
-can list them by typing 
+There are a number of additional options for the `pynq get-notebooks` command,
+you can list them by typing 
    ```bash
-   pynq examples --help
+   pynq get-notebooks --help
    ```
 
-## Deploying Examples from Cloned Repo
+## Install Examples using Cloned Repo
 
-Alternatively to the `pynq examples` command, you can also deploy the included 
-examples directly from the cloned repository. This might be useful in case you 
-have synthesized the included overlays for a board/shell for which we do not 
-distribute overlays ourselves, as explained in the overlays 
-[README](overlays/README.md). To do so, `cd` in the cloned repository and run:
+Alternatively to what shown above, you might also want to install the package
+from the cloned repository. This might be useful in case you have synthesized 
+the included overlays for a board/shell for which we do not distribute overlays
+ourselves, as explained in the overlays [README](overlays/README.md). To do so,
+`cd` in the root of the cloned repository and run:
 
 ```bash
-python3 -m pynqexamples -p <target-path>
+pip3 install -U .
 ```
+
+Remember that when using conda, `pip3` might not be available, while `pip` will
+refer to Python3. In this case, use `pip` instead of `pip3`.
+
+After that, run the `pynq get-notebooks` command to get the examples.
