@@ -14,6 +14,7 @@
 
 from setuptools import setup, find_packages
 import os
+from pynq.utils import build_py
 
 
 __author__ = "Giuseppe Natale"
@@ -66,12 +67,13 @@ setup(name=module_name,
       },
       entry_points={
           "pynq.notebooks": [
-              "1-introduction = pynqexamples.notebooks.1_introduction",
-              "2-kernel-optimization = pynqexamples.notebooks."
+              "1-introduction = pynq_alveo_examples.notebooks.1_introduction",
+              "2-kernel-optimization = pynq_alveo_examples.notebooks."
               "2_kernel_optimization",
-              "3-advanced-features = pynqexamples.notebooks."
+              "3-advanced-features = pynq_alveo_examples.notebooks."
               "3_advanced_features"
           ]
       },
+      cmdclass={"build_py": build_py},
       license="Apache License 2.0"
       )
