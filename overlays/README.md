@@ -9,7 +9,7 @@ repository.
 
 ## Included Overlays
 
-There are a total of three overlays included in this repository:
+There are a total of four overlays included in this repository:
 
 1. **Introduction**: this overlay includes the *vector addition kernel* from 
 the Vitis Accel Examples' 
@@ -34,6 +34,10 @@ multiplication* kernels specifically developed for this overlay, for which the
 source code is available [here](./src/advanced_features.cpp). It is used for 
 the [advanced features notebooks](../pynqexamples/notebooks/3-advanced-features).
 
+4. **Data Compression**: this overlay includes *LZ4* and *zlib* compression
+kernels from the [Vitis Data Compression Library](https://github.com/Xilinx/Vitis_Libraries/tree/master/data_compression).
+It is used for the [data compression notebooks](../pynq_alveo_examples/notebooks/data_compression).
+
 ## Supported Boards/Shells
 
 Currently, we distribute overlays only for the following Alveo boards and shells:
@@ -45,8 +49,8 @@ xilinx_u250_xdma_201830_2|Xilinx Alveo U250
 xilinx_u280_xdma_201920_1|Xilinx Alveo U280
 xilinx_u50_xdma_201920_1|Xilinx Alveo U50
 
-Designs are built using Vitis 2019.2.
-The *Kernel Optimization* overlay is not available for the Alveo U280 and U50.
+Designs are built using Vitis 2019.2.  The *Kernel Optimization* and *Data
+Compression* overlays are not available for the Alveo U280 and U50.
 
 ## Rebuilding Overlays
 
