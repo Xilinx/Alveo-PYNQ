@@ -64,7 +64,8 @@ setup(name=module_name,
           "pynq>=2.5.1",
           "jupyter",
           "jupyterlab",
-          "plotly"
+          "plotly",
+          "lz4"
       ],
       extras_require={
           ':python_version<"3.6"': [
@@ -84,7 +85,9 @@ setup(name=module_name,
               "3-advanced-features = pynq_alveo_examples.notebooks."
               "3_advanced_features",
               "4-building-and-emulation = pynq_alveo_examples.notebooks."
-              "4_building_and_emulation"
+              "4_building_and_emulation",
+              "data-compression = pynq_alveo_examples.notebooks."
+              "data_compression"
           ]
       },
       cmdclass={"build_py": build_py},
