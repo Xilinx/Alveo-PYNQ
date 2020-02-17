@@ -1,0 +1,10 @@
+{
+    "xilinx_u200_xdma_201830_2": {
+        "url": "file:/scratch/users/ogden/compression.hw.xilinx_u200_xdma_201830_2.xclbin",
+        "md5sum": "4cbbfadb483074a3e2e1fbcdf415621c"
+    },
+    "xilinx_u250_xdma_201830_2": {
+        "url": "file:/scratch/users/ogden/compression.hw.xilinx_u250_xdma_201830_2.xclbin",
+        "md5sum": "9924c94f6cba0e87d47ed7c1d311579a"
+    }
+}
