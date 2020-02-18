@@ -69,7 +69,8 @@ setup(name=module_name,
       ],
       extras_require={
           ':python_version<"3.6"': [
-              'matplotlib<3.1'
+              'matplotlib<3.1',
+              'ipython==7.9'
           ],
           ':python_version>="3.6"': [
               'matplotlib'
