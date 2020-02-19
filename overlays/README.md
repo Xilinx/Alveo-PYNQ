@@ -48,6 +48,7 @@ xilinx_u200_xdma_201830_2|Xilinx Alveo U200
 xilinx_u250_xdma_201830_2|Xilinx Alveo U250
 xilinx_u280_xdma_201920_1|Xilinx Alveo U280
 xilinx_u50_xdma_201920_1|Xilinx Alveo U50
+xilinx_aws-vu9p-f1_dynamic_5_0|Amazon AWS F1
 
 Designs are built using Vitis 2019.2.  The *Kernel Optimization* and *Data
 Compression* overlays are not available for the Alveo U280 and U50.
