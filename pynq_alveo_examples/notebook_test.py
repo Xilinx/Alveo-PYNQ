@@ -18,6 +18,7 @@ __email__ = "pynq_support@xilinx.com"
 
 
 import os
+import re
 from pynq.utils import run_notebook
 
 NOTEBOOK_PATH = os.path.join(os.path.dirname(__file__), 'notebooks')
@@ -29,6 +30,21 @@ def get_stdout(result, cell_num):
         if output['output_type'] == 'stream' and output['name'] == 'stdout':
             return output['text']
     return None
+
+
+_time_lookup = {
+    's': 1,
+    'ms': 0.001,
+    'us': 0.000001
+}
+
+
+def get_timeit_time(result, cell_num):
+    stdout = get_stdout(result, cell_num)
+    m = re.match('([0-9.]+) ([a-z]+)', stdout)
+    if m is None:
+        raise RuntimeError('No timing data found')
+    return float(m[1]) * _time_lookup[m[2]]
 
 
 def test_welcome():
@@ -94,3 +110,26 @@ def test_scheduling():
         NOTEBOOK_PATH)
     assert result._5 is True
     assert result._11 is True
+
+def test_compression_intro():
+    result = run_notebook(
+        'data_compression/intro-to-compression.ipynb', NOTEBOOK_PATH)
+    assert result._12
+    assert result._13 < 1
+
+def test_compression_overlapped():
+    result = run_notebook(
+        'data_compression/overlapping-communication-compute.ipynb',
+        NOTEBOOK_PATH)
+    assert result._8
+    base_time = get_timeit_time(result, 9)
+    overlapped_time = get_timeit_time(result, 15)
+    assert overlapped_time < base_time   
+
+def test_compression_zlib():
+    result = run_notebook(
+        'data_compression/zlib-compression.ipynb', NOTEBOOK_PATH)
+    assert result._20
+    hw_time = get_timeit_time(result, 23)
+    sw_time = get_timeit_time(result, 24)
+
