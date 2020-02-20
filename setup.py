@@ -78,17 +78,18 @@ setup(name=module_name,
       },
       entry_points={
           "pynq.notebooks": [
-              "0-welcome-to-pynq = pynq_alveo_examples.notebooks."
-              "0_welcome_to_pynq",
-              "1-introduction = pynq_alveo_examples.notebooks.1_introduction",
-              "2-kernel-optimization = pynq_alveo_examples.notebooks."
-              "2_kernel_optimization",
-              "3-advanced-features = pynq_alveo_examples.notebooks."
-              "3_advanced_features",
-              "4-building-and-emulation = pynq_alveo_examples.notebooks."
-              "4_building_and_emulation",
-              "data-compression = pynq_alveo_examples.notebooks."
-              "data_compression"
+              "0-welcome-to-pynq = {}.notebooks.0_welcome_to_pynq".format(
+                  module_name),
+              "1-introduction = {}.notebooks.1_introduction".format(
+                  module_name),
+              "2-kernel-optimization = {}.notebooks."
+              "2_kernel_optimization".format(module_name),
+              "3-advanced-features = {}.notebooks.3_advanced_features".format(
+                  module_name),
+              "4-building-and-emulation = {}.notebooks."
+              "4_building_and_emulation".format(module_name),
+              "data-compression = {}.notebooks.data_compression".format(
+                  module_name)
           ]
       },
       cmdclass={"build_py": build_py},
