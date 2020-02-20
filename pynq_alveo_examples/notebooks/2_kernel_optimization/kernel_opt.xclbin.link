@@ -6,5 +6,9 @@
     "xilinx_u250_xdma_201830_2": {
         "url": "http://bit.ly/2SNOTvA",
         "md5sum": "fedcd76b14444ceead0573783bb7bc00"
+    },
+    "xilinx_aws-vu9p-f1_dynamic_5_0": {
+        "url": "http://bit.ly/2HGqGC9",
+        "md5sum": "d8e2785ec2b11d2a879c7781c40e4fc1"
     }
 }

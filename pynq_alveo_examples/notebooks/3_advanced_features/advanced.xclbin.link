@@ -14,5 +14,9 @@
     "xilinx_u50_xdma_201920_1": {
         "url": "http://bit.ly/31YHMoc",
         "md5sum": "22303aabfd2994be3307e58652a48bbf"
+    },
+    "xilinx_aws-vu9p-f1_dynamic_5_0": {
+        "url": "http://bit.ly/3bSqc9P",
+        "md5sum": "4887a053450b2e6fa7b7010d1eae4cb2"
     }
 }
