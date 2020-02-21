@@ -1,3 +1,5 @@
+![alt tag](./logo.png)
+
 # Introductory Examples for using PYNQ with Alveo
 
 This project includes introductory examples for using 
