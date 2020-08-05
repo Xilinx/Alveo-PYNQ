@@ -120,8 +120,11 @@ extern "C" void mmult(const int* A, const int* B, int* C)
 // #pragma HLS INTERFACE s_axilite register port=M
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 #pragma HLS INTERFACE m_axi port=A offset=slave bundle=gmem_AC depth=32*32 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=A bundle=control
 #pragma HLS INTERFACE m_axi port=B offset=slave bundle=gmem_B  depth=32*32 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=B bundle=control
 #pragma HLS INTERFACE m_axi port=C offset=slave bundle=gmem_AC depth=32*32 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=C bundle=control
 
 	hls::stream<int> a_stream("a_stream");
 	hls::stream<int> b_stream("b_stream");
@@ -157,8 +160,11 @@ void add_kernel(hls::stream<int>& a, hls::stream<int>& b, hls::stream<int>& c) {
 extern "C" void vadd(const int* A, const int* B, int* C) {
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 #pragma HLS INTERFACE m_axi port=A offset=slave bundle=gmem_AC depth=256 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=A bundle=control
 #pragma HLS INTERFACE m_axi port=B offset=slave bundle=gmem_B  depth=16*16 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=B bundle=control
 #pragma HLS INTERFACE m_axi port=C offset=slave bundle=gmem_AC depth=16*16 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=C bundle=control
 #pragma HLS DATAFLOW
 
 	hls::stream<int> a_stream("a_stream");
