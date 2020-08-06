@@ -28,8 +28,11 @@ typedef ap_uint<512> uint512_t;
 extern "C" void vadd_wide(uint512_t* a, uint512_t* b, uint512_t* c, int count) {
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 #pragma HLS INTERFACE m_axi port=a offset=slave bundle=gmem_a depth=4096 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=a bundle=control
 #pragma HLS INTERFACE m_axi port=b offset=slave bundle=gmem_b  depth=4096 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=b bundle=control
 #pragma HLS INTERFACE m_axi port=c offset=slave bundle=gmem_c depth=4096 num_read_outstanding=8 num_write_outstanding=8 max_read_burst_length=256 max_write_burst_length=256
+#pragma HLS INTERFACE s_axilite port=c bundle=control
 #pragma HLS INTERFACE s_axilite port=count bundle=control
         int iterations = count >> 4;
         for (int i = 0; i < iterations; ++i) {
