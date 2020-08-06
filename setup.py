@@ -37,7 +37,7 @@ def extend_package(path):
         data_files.append(os.path.join("..", path))
 
 with open("README.md", encoding="utf-8") as fh:
-    readme_lines = fh.readlines()[2:]
+    readme_lines = fh.readlines()[4:]
 long_description = ("".join(readme_lines))
 
 extend_package(os.path.join(module_name, "notebooks"))
