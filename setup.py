@@ -14,7 +14,7 @@
 
 from setuptools import setup, find_packages
 import os
-from pynq.utils import build_py
+from pynqutils.setup_utils import build_py, extend_package
 
 
 __author__ = "Giuseppe Natale"
@@ -26,23 +26,13 @@ __email__ = "pynq_support@xilinx.com"
 module_name = "pynq_alveo_examples"
 data_files = []
 
-
-def extend_package(path):
-    if os.path.isdir(path):
-        data_files.extend(
-            [os.path.join("..", root, f)
-             for root, _, files in os.walk(path) for f in files]
-        )
-    elif os.path.isfile(path):
-        data_files.append(os.path.join("..", path))
-
 with open("README.md", encoding="utf-8") as fh:
     readme_lines = fh.readlines()[4:]
 long_description = ("".join(readme_lines))
 
 extend_package(os.path.join(module_name, "notebooks"))
 setup(name=module_name,
-      version="1.0.2",
+      version="1.0.3",
       description="Introductory Examples for using PYNQ with Alveo",
       long_description=long_description,
       long_description_content_type="text/markdown",
@@ -58,10 +48,11 @@ setup(name=module_name,
       # keeping 'setup_requires' only for readability - relying on
       # pyproject.toml and PEP 517/518
       setup_requires=[
-          "pynq>=2.5.1"
+          "pynq>=3.0.1",
+          "pynqutils>=0.1.1"
       ],
       install_requires=[
-          "pynq>=2.5.1",
+          "pynq>=3.0.1",
           "jupyter",
           "jupyterlab",
           "plotly",
