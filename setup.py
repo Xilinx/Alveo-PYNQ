@@ -13,7 +13,6 @@
 #  limitations under the License.
 
 from setuptools import setup, find_packages
-import os
 from pynqutils.setup_utils import build_py, extend_package
 
 
@@ -30,7 +29,7 @@ with open("README.md", encoding="utf-8") as fh:
     readme_lines = fh.readlines()[4:]
 long_description = ("".join(readme_lines))
 
-extend_package(os.path.join(module_name, "notebooks"))
+extend_package(module_name, data_files)
 setup(name=module_name,
       version="1.0.3",
       description="Introductory Examples for using PYNQ with Alveo",
@@ -44,7 +43,7 @@ setup(name=module_name,
       package_data={
           "": data_files,
       },
-      python_requires=">=3.5.2",
+      python_requires=">=3.8.0",
       # keeping 'setup_requires' only for readability - relying on
       # pyproject.toml and PEP 517/518
       setup_requires=[
@@ -53,20 +52,14 @@ setup(name=module_name,
       ],
       install_requires=[
           "pynq>=3.0.1",
+          "pynqutils>=0.1.1",
           "jupyter",
           "jupyterlab",
           "plotly",
-          "lz4"
+          "lz4",
+          "matplotlib",
+          "ipython"
       ],
-      extras_require={
-          ':python_version<"3.6"': [
-              'matplotlib<3.1',
-              'ipython==7.9'
-          ],
-          ':python_version>="3.6"': [
-              'matplotlib'
-          ]
-      },
       entry_points={
           "pynq.notebooks": [
               "0-welcome-to-pynq = {}.notebooks.0_welcome_to_pynq".format(
