@@ -51,7 +51,7 @@ all: build install
 
 build: advanced kernel_opt intro compression
 
-advanced: check-vitis check-xrt advanced.$(TARGET).$(XSA).xclbin
+advanced: check-vitis check-xrt create-conf-file advanced.$(TARGET).$(XSA).xclbin
 
 kernel_opt: check-vitis check-xrt kernel_opt.$(TARGET).$(XSA).xclbin
 
@@ -71,6 +71,16 @@ check-xrt:
 ifndef XILINX_XRT
 	$(error XILINX_XRT variable is not set. Please make sure you have sourced the XRT setup.{csh,sh})
 endif
+
+#Create configuration file for current design and settings
+create-conf-file:
+	cp kernel_opt.ini kernel_opt.$(XSA).tmp.ini
+	@if [[ $(DEVICE) = *"u5"* ]]; then\
+		sed -i 's/DDR/HBM/g' kernel_opt.$(XSA).tmp.ini;\
+	fi
+	@if [[ $(DEVICE) = *"u280"* ]]; then\
+		sed -i 's/DDR/HBM/g' kernel_opt.$(XSA).tmp.ini;\
+	fi
 
 $(INSTALL_PATH)/1-introduction/intro.xclbin:
 ifneq (,$(wildcard intro.$(TARGET).$(XSA).xclbin))
@@ -159,7 +169,7 @@ $(XO_DIR)/xilLz4Compress.xo: $(COMP_SRC_DIR)/lz4_compress_mm.cpp | $(XO_DIR)
 intro.$(TARGET).$(XSA).xclbin: $(INTRO_XO) | $(XCLBIN_DIR)
 	$(VPP) $(CLFLAGS) --temp_dir $(XCLBIN_DIR) --kernel_frequency $(FREQUENCY) -l -o'$@' $(+)
 kernel_opt.$(TARGET).$(XSA).xclbin: $(KRNL_OPT_XO) | $(XCLBIN_DIR)
-	$(VPP) $(CLFLAGS) --temp_dir $(XCLBIN_DIR) --kernel_frequency $(FREQUENCY) -l --config kernel_opt.ini -o'$@' $(+)
+	$(VPP) $(CLFLAGS) --temp_dir $(XCLBIN_DIR) --kernel_frequency $(FREQUENCY) -l --config kernel_opt.$(XSA).tmp.ini -o'$@' $(+)
 advanced.$(TARGET).$(XSA).xclbin: $(ADVANCED_XO) | $(XCLBIN_DIR)
 	$(VPP) $(CLFLAGS) --temp_dir $(XCLBIN_DIR) --kernel_frequency $(FREQUENCY) -l -o'$@' $(+)
 compression.$(TARGET).$(XSA).xclbin: $(COMPRESSION_XO) | $(XCLBIN_DIR)
@@ -168,6 +178,7 @@ compression.$(TARGET).$(XSA).xclbin: $(COMPRESSION_XO) | $(XCLBIN_DIR)
 clean:
 	-$(RMDIR) _xclbin* _xo* .Xil $(MOD_SRC_DIR)
 	-$(RM) *.log *.jou  *.info *.ltx *.pb *.link_summary
+	-$(RM) *.tmp.ini
 
 cleanall: clean
 	-$(RM) *.xclbin

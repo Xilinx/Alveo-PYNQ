@@ -24,7 +24,7 @@
 
 #include <hls_stream.h>
 
-#define N 512
+#define N 128
 
 typedef int data_type;
 
