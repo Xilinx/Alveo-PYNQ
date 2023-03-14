@@ -9,3 +9,6 @@ overlays/*.xclbin
 *.ltx
 *.pb
 *.link_summary
+.ipynb_checkpoints/
+.ipcache/
+*.tmp.ini
